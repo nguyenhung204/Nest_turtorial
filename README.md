@@ -57,7 +57,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-##Features:
+## Feature
 
 CRUD Operations: The application supports Create, Read, Update, and Delete (CRUD) operations for data management.
 
@@ -73,4 +73,4 @@ Real-time WebSocket Chat: The application features real-time WebSocket chat, ena
 
 Don't forget config .env file, host and port database
 
-If you find any bugs or have any contributions, please feel free to create a pull request for me. Thank you.
+If you find any bugs or have any contributions, please feel free to create a pull request for me. Thank you <3
