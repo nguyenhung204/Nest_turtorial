@@ -9,8 +9,4 @@ export class WsJwtAuthGuard extends AuthGuard('jwt') {
         console.log("WS jwt");
         return ctx.getClient().handshake;
     }
-
-    
-
-
 }

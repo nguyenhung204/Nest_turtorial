@@ -38,7 +38,7 @@ import { User, UserSchema } from 'src/schemas/User.schemas';
     ConfigModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService, UtilsService, GoogleStrategy,FacebookStrategy, LocalStrategy, JwtStrategy, LocalGuard, RefreshJwtStrategy,SessionSerializer, ConfigService,
+  providers: [AuthService, UtilsService, GoogleStrategy, FacebookStrategy, LocalStrategy, JwtStrategy, LocalGuard, RefreshJwtStrategy, SessionSerializer, ConfigService,
     {
       provide: 'AUTH_SERVICE',
       useClass: AuthService,

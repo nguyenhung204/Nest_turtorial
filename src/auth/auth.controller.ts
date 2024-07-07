@@ -49,7 +49,6 @@ export class AuthController {
   }
 
   //google login
-
   @Get('google/login')
   @UseGuards(GoogleAuthGuard)
   handleLoginGoogle() {
@@ -86,6 +85,7 @@ export class AuthController {
       data: req.user,
     };
   }
+
   @Get('facebook/status')
   UserStatusFacebook(@Req() req: Request) {
     if (req.user) {
@@ -95,4 +95,5 @@ export class AuthController {
       return { msg: 'Not Authenticated' };
     }
   }
+
 }

@@ -45,6 +45,9 @@ export class User {
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Home' })
     homes: Home[];
+    
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Room' })
+    rooms: Room[];
 
     @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: Interest.name, autopopulate: true }])
     interests: Interest[]

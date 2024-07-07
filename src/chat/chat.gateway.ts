@@ -36,7 +36,8 @@ export class ChatsGateway {
 
     const chat = await this.chatsService.create(senderId, createChatDto);
 
-    this.server.emit('chats', chat);
+    this.server.to(createChatDto.room_id).emit('chats', chat);
+
   }
 
 

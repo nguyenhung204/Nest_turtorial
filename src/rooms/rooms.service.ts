@@ -16,7 +16,6 @@ export class RoomsService {
         const createdRoom = new this.roomModel(createRoomDto);
         return await createdRoom.save();
     }
-
     async getByRequest(userId: string) {
         return await this.roomModel.find({ members: userId }).exec();
     }

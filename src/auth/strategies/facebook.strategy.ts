@@ -7,10 +7,11 @@ import { AuthService } from "../auth.service";
 @Injectable()
 export class FacebookStrategy extends PassportStrategy(Strategy, "facebook") {
     constructor(@Inject('AUTH_SERVICE') private readonly authService: AuthService,
-    public configService: ConfigService) {
+     private configService: ConfigService
+   ) {
         super({
-            clientID: process.env.APP_ID,
-            clientSecret: process.env.APP_SECRET,
+            clientID: configService.get<string>('APP_ID'),
+            clientSecret: configService.get<string>('APP_SECRET'),
             callbackURL: "http://localhost:5000/auth/facebook/redirect",
             scope: ["email","public_profile"],
             profileFields: ['id', 'emails', 'name', 'photos']
