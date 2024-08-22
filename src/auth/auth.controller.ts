@@ -20,7 +20,7 @@ export class AuthController {
   register(@Body() user: CreateUserDto) {
     return this.authService.register(user);
   }
-  //login
+  //login 
   @UseGuards(LocalGuard)
   @Post('login')
   @UseGuards(LocalStrategy)

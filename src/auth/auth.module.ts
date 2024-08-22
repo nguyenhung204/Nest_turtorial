@@ -25,9 +25,8 @@ import { User, UserSchema } from 'src/schemas/User.schemas';
       {
         name: User.name,
         schema: UserSchema,
-      },
-
-    ],
+      }
+    ]
     ),
     PassportModule.register({ session: true }),
     UserModule,
