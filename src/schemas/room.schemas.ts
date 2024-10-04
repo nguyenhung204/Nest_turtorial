@@ -1,27 +1,32 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import mongoose, { HydratedDocument, Types } from "mongoose";
-import { RoomType } from "src/rooms/enums/room-type.enum";
-import { User } from "./User.schemas";
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose, { Types } from 'mongoose';
+import { RoomType } from 'src/rooms/enums/room-type.enum';
+import { User } from './User.schemas';
 
 @Schema({
     timestamps: true,
     versionKey: false,
-    toJSON: ({
+    toJSON: {
         transform(_, ret, __) {
             return new RoomDocument(ret);
         },
-    })
+    },
 })
 export class Room {
-
     @Prop()
     name: string;
 
     @Prop({ type: String, enum: RoomType, default: RoomType.PERSONAL })
     type: RoomType;
 
-    @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: User.name, autopopulate: true}])
+    @Prop([
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: User.name,
+            autopopulate: true,
+        },
+    ])
     members: User[];
 }
 
@@ -40,7 +45,9 @@ export class RoomDocument {
         this.type = props.type;
 
         if (this.type == RoomType.PERSONAL) {
-            this.name = this.members.find((member: any) => member._id.toString() !== this._id.toString()).name;
+            this.name = this.members.find(
+                (member: any) => member._id.toString() !== this._id.toString(),
+            ).name;
         }
     }
 }

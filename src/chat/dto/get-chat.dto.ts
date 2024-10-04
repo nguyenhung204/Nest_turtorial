@@ -1,7 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class GetChatDto {
-
     @ApiProperty({
         required: false,
     })
@@ -13,7 +12,7 @@ export class GetChatDto {
     })
     readonly limit: number = 10;
 
-    constructor(data : any) {
+    constructor(data: any) {
         Object.assign(this, data);
     }
 }

@@ -1,4 +1,4 @@
-import { IsBoolean, IsNotEmpty, IsString } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateHomeDto {
     @IsString()
@@ -13,9 +13,8 @@ export class CreateHomeDto {
     @IsBoolean()
     wifi?: boolean;
     laundry?: boolean;
-    
+
     @IsString()
     @IsNotEmpty()
     userId: string;
-
 }

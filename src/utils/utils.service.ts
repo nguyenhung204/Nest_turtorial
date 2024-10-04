@@ -5,16 +5,16 @@ export class UtilsService {
     getServerIp(): string {
         return 'localhost';
         const networkInterfaces = os.networkInterfaces();
-    
+
         for (const name in networkInterfaces) {
-          const interfaceInfo = networkInterfaces[name];
-          for (const address of interfaceInfo) {
-            if (address.family === 'IPv4' && !address.internal) {
-              return address.address;
+            const interfaceInfo = networkInterfaces[name];
+            for (const address of interfaceInfo) {
+                if (address.family === 'IPv4' && !address.internal) {
+                    return address.address;
+                }
             }
-          }
         }
-    
+
         return null;
-      }
+    }
 }

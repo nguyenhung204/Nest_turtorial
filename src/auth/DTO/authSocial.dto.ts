@@ -1,4 +1,4 @@
-import {IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class AuthSocialDto {
     @IsString()
@@ -12,9 +12,8 @@ export class AuthSocialDto {
     picture: string;
     @IsString()
     @IsNotEmpty()
-    displayName : string;
+    displayName: string;
     @IsString()
     @IsNotEmpty()
-    accessToken : string;
-
+    accessToken: string;
 }

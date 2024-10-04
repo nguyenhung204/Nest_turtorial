@@ -8,12 +8,9 @@ async function bootstrap() {
     });
 
     try {
-        await app
-            .select(CommandModule)
-            .get(CommandService)
-            .exec();
+        await app.select(CommandModule).get(CommandService).exec();
 
-        await app.close()
+        await app.close();
     } catch (error) {
         console.error(error);
         await app.close();

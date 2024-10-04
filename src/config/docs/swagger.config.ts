@@ -1,8 +1,7 @@
-import { INestApplication } from "@nestjs/common";
-import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import { INestApplication } from '@nestjs/common';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 export class SwaggerConfig {
-
     static config(app: INestApplication<any>) {
         const config = new DocumentBuilder()
             .setTitle('NestJS Chat')

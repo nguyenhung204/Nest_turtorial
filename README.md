@@ -18,8 +18,8 @@
   <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
 </p>
 
-
 ## Description
+
 The project is built using a combination of popular technologies:
 
 NestJS: NestJS is a TypeScript framework for building modern, scalable Node.js applications. It provides a structured and organized approach to development, promoting clean code and maintainability.

@@ -1,9 +1,9 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import mongoose, { HydratedDocument } from "mongoose";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose, { HydratedDocument } from 'mongoose';
 
-import { Home } from "./Home.schema";
-import { Interest } from "./interest.schema";
-import { Room } from "./room.schemas";
+import { Home } from './Home.schema';
+
+import { Room } from './room.schemas';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -12,11 +12,15 @@ export type UserDocument = HydratedDocument<User>;
     versionKey: false,
 })
 export class User {
-    @Prop({ required: false, auto: true, default: new mongoose.Types.ObjectId })
+    @Prop({
+        required: false,
+        auto: true,
+        default: new mongoose.Types.ObjectId(),
+    })
     _id: mongoose.Types.ObjectId;
 
     @Prop({
-        required: true
+        required: true,
     })
     name: string;
 
@@ -33,7 +37,7 @@ export class User {
     email: string;
 
     @Prop({
-        required: false
+        required: false,
     })
     password: string;
 
@@ -45,12 +49,9 @@ export class User {
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Home' })
     homes: Home[];
-    
+
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Room' })
     rooms: Room[];
-
-    @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: Interest.name, autopopulate: true }])
-    interests: Interest[]
 
     @Prop()
     refreshToken: string;

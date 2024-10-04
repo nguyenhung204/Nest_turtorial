@@ -4,13 +4,9 @@ import { Model } from 'mongoose';
 import { UpdateUserDto } from './DTO/updateUser.dto';
 import { User } from 'src/schemas/User.schemas';
 
-
 @Injectable()
-
 export class UserService {
-
-    constructor(@InjectModel(User.name) private userModel: Model<User>)
-    {}
+    constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
     getUserById(id: string) {
         return this.userModel.findById(id).populate('rooms');
@@ -22,12 +18,10 @@ export class UserService {
     deleteUser(id: string) {
         return this.userModel.findByIdAndDelete(id);
     }
-    
+
     updateUser(id: string, updateUserDto: UpdateUserDto) {
-        return this.userModel.findByIdAndUpdate(id, updateUserDto, { new: true });
+        return this.userModel.findByIdAndUpdate(id, updateUserDto, {
+            new: true,
+        });
     }
-   
 }
-   
-    
-   

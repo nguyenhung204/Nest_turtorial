@@ -1,22 +1,31 @@
 import mongoose from 'mongoose';
 import { HomeService } from './home.servive';
-import { Body, Controller, Delete, Get, HttpException, Param, Patch, Post, UsePipes, ValidationPipe } from "@nestjs/common";
+import {
+    Body,
+    Controller,
+    Delete,
+    Get,
+    HttpException,
+    Param,
+    Patch,
+    Post,
+    UsePipes,
+    ValidationPipe,
+} from '@nestjs/common';
 import { CreateHomeDto } from './DTO/home.dto';
 import { UpdateHomeDto } from './DTO/updateHome.dto';
 
 @Controller('home')
 export class HomeController {
-    constructor(private readonly homeService: HomeService) { }
+    constructor(private readonly homeService: HomeService) {}
 
     @Post()
     @UsePipes(new ValidationPipe())
     createHome(@Body() createHomeDto: CreateHomeDto) {
-
         try {
             console.log(createHomeDto);
             return this.homeService.createHome(createHomeDto);
-        }
-        catch (error) {
+        } catch (error) {
             return error;
         }
     }
@@ -36,10 +45,16 @@ export class HomeController {
     }
     @Patch(':id')
     @UsePipes(new ValidationPipe())
-    async updateHome(@Param('id') id: string, @Body() updateHomeDto: UpdateHomeDto) {
+    async updateHome(
+        @Param('id') id: string,
+        @Body() updateHomeDto: UpdateHomeDto,
+    ) {
         const isValid = mongoose.Types.ObjectId.isValid(id);
         if (!isValid) throw new HttpException('Invalid ID', 400);
-        const updatedHome = await this.homeService.updateHome(id, updateHomeDto);
+        const updatedHome = await this.homeService.updateHome(
+            id,
+            updateHomeDto,
+        );
         if (!updatedHome) throw new HttpException('Home not found', 404);
         return updatedHome;
     }
@@ -52,5 +67,4 @@ export class HomeController {
         if (!deletedHome) throw new HttpException('Home not found', 404);
         return deletedHome;
     }
-
 }

@@ -6,15 +6,12 @@ import { Home } from 'src/schemas/Home.schema';
 import { UpdateHomeDto } from './DTO/updateHome.dto';
 import { User } from 'src/schemas/User.schemas';
 
-
-
 @Injectable()
-
 export class HomeService {
-
     constructor(
         @InjectModel(Home.name) private homeModel: Model<Home>,
-        @InjectModel(User.name) private userModel: Model<User>) { }
+        @InjectModel(User.name) private userModel: Model<User>,
+    ) {}
 
     async createHome({ userId, ...createHomeDto }: CreateHomeDto) {
         const findUser = await this.userModel.findById(userId);
@@ -24,10 +21,11 @@ export class HomeService {
         }
         const newHome = new this.homeModel(createHomeDto);
         const savedHome = await newHome.save();
-        await findUser.updateOne({ 
-            $push: { 
+        await findUser.updateOne({
+            $push: {
                 homes: savedHome._id,
-         } });
+            },
+        });
         return savedHome;
     }
     getHomes() {
@@ -36,17 +34,12 @@ export class HomeService {
     getHomeById(id: string) {
         return this.homeModel.findById(id);
     }
-    updateHome(id: String, updateHomeDto: UpdateHomeDto) {
-        return this.homeModel.findByIdAndUpdate(id, updateHomeDto, { new: true });
-
+    updateHome(id: string, updateHomeDto: UpdateHomeDto) {
+        return this.homeModel.findByIdAndUpdate(id, updateHomeDto, {
+            new: true,
+        });
     }
-    deleteHome(id: String) {
+    deleteHome(id: string) {
         return this.homeModel.findByIdAndDelete(id);
     }
 }
-
-
-
-
-
-

@@ -1,23 +1,22 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-@Schema ()
-
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+@Schema()
 export class Home {
-    @Prop({required : true})
-    name : String;
-    @Prop({required : true})
-    state : String;
-    @Prop({required : true})
-    photo : String;
-    @Prop({required : true})
-    availableUnits : Number;
-    @Prop({required : true})
-    city : String;
+    @Prop({ required: true })
+    name: string;
+    @Prop({ required: true })
+    state: string;
+    @Prop({ required: true })
+    photo: string;
+    @Prop({ required: true })
+    availableUnits: number;
+    @Prop({ required: true })
+    city: string;
     @Prop()
-    wifi : Boolean;
+    wifi: boolean;
     @Prop()
-    laundry : Boolean;
-    @Prop({required : false, default : Date.now})
-    createdAt : Date;
+    laundry: boolean;
+    @Prop({ required: false, default: Date.now })
+    createdAt: Date;
 }
 
 export const HomeSchema = SchemaFactory.createForClass(Home);

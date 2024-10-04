@@ -6,7 +6,7 @@ import { OAuth2Client } from 'google-auth-library';
 export class WsJwtAuthGuard extends AuthGuard('jwt') {
     getRequest(context: ExecutionContext) {
         const ctx = context.switchToWs();
-        console.log("WS jwt");
+        console.log('WS jwt');
         return ctx.getClient().handshake;
     }
 }

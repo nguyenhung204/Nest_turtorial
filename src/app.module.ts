@@ -1,4 +1,4 @@
-
+/* eslint-disable @typescript-eslint/no-require-imports */
 import { Module } from '@nestjs/common';
 import { HomeModule } from './home/home.module';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -12,28 +12,28 @@ import { ChatsModule } from './chat/chat.module';
 import { CommandModule } from 'nestjs-command';
 
 
-
 @Module({
-  imports: [ 
-    MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        uri: configService.get<string>('MONGODB_URI'),
-        connectionFactory: (connection) => {
-          connection.plugin(require('mongoose-autopopulate'));
-          return connection
-    }}),
-      inject: [ConfigService],
-    }),
+    imports: [
+        MongooseModule.forRootAsync({
+            imports: [ConfigModule],
+            useFactory: async (configService: ConfigService) => ({
+                uri: configService.get<string>('MONGODB_URI'),
+                connectionFactory: (connection) => {
+                    connection.plugin(require('mongoose-autopopulate'));
+                    return connection;
+                },
+            }),
+            inject: [ConfigService],
+        }),
 
-    CommandModule,
-    HomeModule,
-    UserModule,
-    AuthModule,
-    RoomsModule,
-    ChatsModule,
-    ConfigModule.forRoot({isGlobal: true}),
-  ],
-  providers: [UtilsService, ChatsGateway],
+        CommandModule,
+        HomeModule,
+        UserModule,
+        AuthModule,
+        RoomsModule,
+        ChatsModule,
+        ConfigModule.forRoot({ isGlobal: true }),
+    ],
+    providers: [UtilsService, ChatsGateway],
 })
 export class AppModule {}
